@@ -4,12 +4,12 @@ import HomeBox from "./components/HomeBox";
 
 function App() {
   return (
-    <div className="container-fluid">
+    <div className="container">
       <div className="row">
-        <div className="bg-info col-4">
+        <div className="col-4 no-float">
           <NavList />
         </div>
-        <div className="col-8">
+        <div className="col-8 no-float">
           <HomeBox />
         </div>
       </div>
