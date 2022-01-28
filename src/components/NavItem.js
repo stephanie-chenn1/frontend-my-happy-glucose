@@ -3,7 +3,7 @@ import "./NavItem.css";
 
 const NavItem = (props) => {
   return (
-    <div>
+    <div className="border border-light border-2">
       <h1>{props.text}</h1>
     </div>
   );
