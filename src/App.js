@@ -1,18 +1,21 @@
 import "./App.css";
 import NavList from "./components/NavList";
-import HomeBox from "./components/HomeBox";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import Home from "./pages/Home";
+import Meals from "./pages/Meals";
+import Glucose from "./pages/Glucose";
 
 function App() {
   return (
-    <div className="container">
-      <div className="row">
-        <div className="col-4 no-float">
-          <NavList />
-        </div>
-        <div className="col-8 no-float">
-          <HomeBox />
-        </div>
-      </div>
+    <div>
+      <Router>
+        <NavList />
+        <Routes>
+          <Route path="/" exact element={<Home />} />
+          <Route path="/meals" exact element={<Meals />} />
+          <Route path="/glucose" exact element={<Glucose />} />
+        </Routes>
+      </Router>
     </div>
   );
 }

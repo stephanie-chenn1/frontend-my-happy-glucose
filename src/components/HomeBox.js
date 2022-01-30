@@ -9,11 +9,21 @@ const HomeBox = () => {
     <div className="text-center">
       <h1>Welcome!</h1>
       <Summary />
-      <Button variant="danger">Track your meal for carb count</Button>
-      <Button variant="danger">Track your glucose level</Button>
-      <Button variant="danger">Track your fitness</Button>
-      <Button variant="danger">Track your sleep</Button>
-      <Button variant="danger">Track your mood</Button>
+      <Button className="button" variant="danger">
+        Track your meal for carb count
+      </Button>
+      <Button className="button" variant="danger">
+        Track your glucose level
+      </Button>
+      <Button className="button" variant="danger">
+        Track your fitness
+      </Button>
+      <Button className="button" variant="danger">
+        Track your sleep
+      </Button>
+      <Button className="button" variant="danger">
+        Track your mood
+      </Button>
     </div>
   );
 };
