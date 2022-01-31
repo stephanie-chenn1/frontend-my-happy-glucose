@@ -6,6 +6,10 @@
     align-items: center;
 }
 
+.app-name {
+    margin-right:10px;
+}
+
 .menu-bars {
     margin-left: 2rem;
     font-size: 2rem;
