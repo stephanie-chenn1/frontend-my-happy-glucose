@@ -39,6 +39,8 @@ function TrackMeal() {
     time: "12:00",
   });
 
+  const [isQtyValid, setQtyValid] = useState(true);
+
   const handleUnitChange = (e) => {
     setFormFields({
       ...formFields,
@@ -47,6 +49,12 @@ function TrackMeal() {
   };
 
   const handleQtyChange = (e) => {
+    if (e.target.value <= 0) {
+      setQtyValid(false);
+    } else {
+      setQtyValid(true);
+    }
+
     setFormFields({
       ...formFields,
       qty: e.target.value,
@@ -83,7 +91,8 @@ function TrackMeal() {
         <form>
           <h2>Track your meal(s) for today</h2>
           <div className="input-field">
-            <label>
+            {/* <label> */}
+            {isQtyValid ? (
               <TextField
                 id="outlined-number"
                 label="Qty"
@@ -94,9 +103,21 @@ function TrackMeal() {
                 }}
                 helperText="Please enter the quantity of your meal"
                 onChange={handleQtyChange}
+                placeholder="1"
                 // value={qty}
               />
-            </label>
+            ) : (
+              <TextField
+                error
+                id="outlined-error-helper-text"
+                label="Error"
+                type="number"
+                helperText="Please enter a positive value"
+                onChange={handleQtyChange}
+              />
+            )}
+
+            {/* </label> */}
           </div>
 
           <div className="input-field">
