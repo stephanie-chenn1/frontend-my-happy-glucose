@@ -28,53 +28,66 @@ const units = [
   },
 ];
 
-function TrackMeal() {
-  // const [unit, setUnit] = useState("cup");
-  // const [qty, setQty] = useState(0);
+const TrackMeal = (props) => {
+  let onUnitChange = props.onUnitChange;
+  let onQtyChange = props.onQtyChange;
+  let isQtyValid = props.isQtyValid;
+  let formFields = props.mealFormFields;
+  let onFoodChange = props.onFoodChange;
+  let onTimeChange = props.onTimeChange;
+  let onDateChange = props.onDateChange;
+  let submitMeal = props.submitMeal;
+  // const [formFields, setFormFields] = useState({
+  //   qty: "",
+  //   unit: "",
+  //   food: "",
+  //   time: "",
+  //   date: "",
+  // });
 
-  const [formFields, setFormFields] = useState({
-    qty: "",
-    unit: "",
-    food: "",
-    time: "12:00",
-  });
+  // const [isQtyValid, setQtyValid] = useState(true);
 
-  const [isQtyValid, setQtyValid] = useState(true);
+  // const handleUnitChange = (e) => {
+  //   setFormFields({
+  //     ...formFields,
+  //     unit: e.target.value,
+  //   });
+  // };
 
-  const handleUnitChange = (e) => {
-    setFormFields({
-      ...formFields,
-      unit: e.target.value,
-    });
-  };
+  // const handleQtyChange = (e) => {
+  //   if (e.target.value <= 0) {
+  //     setQtyValid(false);
+  //   } else {
+  //     setQtyValid(true);
+  //   }
 
-  const handleQtyChange = (e) => {
-    if (e.target.value <= 0) {
-      setQtyValid(false);
-    } else {
-      setQtyValid(true);
-    }
+  //   setFormFields({
+  //     ...formFields,
+  //     qty: e.target.value,
+  //   });
+  // };
 
-    setFormFields({
-      ...formFields,
-      qty: e.target.value,
-    });
-  };
+  // const handleFoodChange = (e) => {
+  //   setFormFields({
+  //     ...formFields,
+  //     food: e.target.value,
+  //   });
+  // };
 
-  const handleFoodChange = (e) => {
-    setFormFields({
-      ...formFields,
-      food: e.target.value,
-    });
-  };
+  // const handleTimeChange = (e) => {
+  //   console.log(e.target.value);
+  //   setFormFields({
+  //     ...formFields,
+  //     time: e.target.value,
+  //   });
+  // };
 
-  const handleTimeChange = (e) => {
-    console.log(e.target.value);
-    setFormFields({
-      ...formFields,
-      time: e.target.value,
-    });
-  };
+  // const handleDateChange = (e) => {
+  //   setFormFields({
+  //     ...formFields,
+  //     date: e.target.value,
+  //   });
+  // };
 
   return (
     <Box
@@ -89,7 +102,7 @@ function TrackMeal() {
     >
       <div className="meal-form">
         <form>
-          <h2>Track your meal(s) for today</h2>
+          <h3>Meal tracker</h3>
           <div className="input-field">
             {/* <label> */}
             {isQtyValid ? (
@@ -98,11 +111,11 @@ function TrackMeal() {
                 label="Qty"
                 min="1"
                 type="number"
-                InputLabelProps={{
-                  shrink: true,
-                }}
+                // InputLabelProps={{
+                //   shrink: true,
+                // }}
                 helperText="Please enter the quantity of your meal"
-                onChange={handleQtyChange}
+                onChange={onQtyChange}
                 placeholder="1"
                 // value={qty}
               />
@@ -113,7 +126,7 @@ function TrackMeal() {
                 label="Error"
                 type="number"
                 helperText="Please enter a positive value"
-                onChange={handleQtyChange}
+                onChange={onQtyChange}
               />
             )}
 
@@ -128,7 +141,7 @@ function TrackMeal() {
                 label="Unit"
                 helperText="Please select a unit"
                 value={formFields.unit}
-                onChange={handleUnitChange}
+                onChange={onUnitChange}
               >
                 {units.map((option) => (
                   <MenuItem key={option.value} value={option.value}>
@@ -146,7 +159,7 @@ function TrackMeal() {
                 label="Food"
                 // defaultValue="Default Value"
                 helperText="Please enter your meal"
-                onChange={handleFoodChange}
+                onChange={onFoodChange}
               />
             </label>
           </div>
@@ -161,23 +174,38 @@ function TrackMeal() {
                 InputLabelProps={{
                   shrink: true,
                 }}
-                inputProps={{
-                  step: 300, // 5 min
-                }}
-                sx={{ width: 150 }}
+                // inputProps={{
+                //   step: 300, // 5 min
+                // }}
+                // sx={{ width: 150 }}
                 helperText="Please enter the time of your meal"
-                onChange={handleTimeChange}
+                onChange={onTimeChange}
               />
             </label>
           </div>
 
-          <Button variant="contained" color="secondary">
+          <div className="input-field">
+            <TextField
+              id="date"
+              label="Date"
+              type="date"
+              defaultValue="2022-02-01"
+              helperText="Please enter the date of your meal"
+              onClick={onDateChange}
+              // sx={{ width: 220 }}
+              // InputLabelProps={{
+              //   shrink: true,
+              // }}
+            />
+          </div>
+
+          <Button variant="contained" color="secondary" onClick={submitMeal}>
             Submit
           </Button>
         </form>
       </div>
     </Box>
   );
-}
+};
 
 export default TrackMeal;
