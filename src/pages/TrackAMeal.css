@@ -1,15 +1,7 @@
-.form {
+.meal-form {
     text-align: center;
-    margin-top: 20px;
-}
-.form-inputs {
-    margin-top:20px;
 }
 
-.form-input {
-    width: 180px;;
-}
-
-.time-field {
-    width:190px;
+.input-field {
+    margin-bottom: 100px;
 }

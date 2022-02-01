@@ -3,71 +3,123 @@ import "./TrackAMeal.css";
 import { Dropdown } from "react-bootstrap";
 import TimePicker from "react-time-picker";
 import { useState } from "react";
+import TextField from "@mui/material/TextField";
+import Button from "@mui/material/Button";
+import Input from "@mui/material/Input";
+import MenuItem from "@mui/material/MenuItem";
+import Box from "@mui/material/Box";
+
+const ariaLabel = { "aria-label": "description" };
+
+const units = [
+  {
+    value: "cup",
+    label: "cup(s)",
+  },
+  {
+    value: "gram",
+    label: "g",
+  },
+  {
+    value: "ounce",
+    label: "oz",
+  },
+  {
+    value: "serving",
+    label: "serving(s)",
+  },
+];
 
 function TrackMeal() {
-  const [time, setTimeField] = useState("00:00:00");
+  const [unit, setUnit] = React.useState("cup");
 
-  const handleTimeChange = (e) => {
-    setTimeField(e.target.value);
+  const handleUnitChange = (e) => {
+    setUnit(e.target.value);
   };
 
   return (
-    <div>
-      <form className="form">
-        <h1 className="title">Track your meal</h1>
-        <div className="form-inputs">
-          Quantity:
-          <label htmlFor="quantity" className="form-label">
-            <input
-              type="text"
-              name="quantity"
-              className="form-input"
-              placeholder="Enter a numeric value"
-            />
-          </label>
-        </div>
-        <div className="form-inputs">
-          <Dropdown>
-            Unit:
-            <Dropdown.Toggle variant="secondary">Select a unit</Dropdown.Toggle>
-            <Dropdown.Menu>
-              <Dropdown.Item>cup</Dropdown.Item>
-              <Dropdown.Item>g</Dropdown.Item>
-              <Dropdown.Item>oz</Dropdown.Item>
-              <Dropdown.Item>serving</Dropdown.Item>
-            </Dropdown.Menu>
-          </Dropdown>
-        </div>
+    <Box
+      component="form"
+      sx={{
+        display: "flex",
+        flexDirection: "column",
+        "& .MuiTextField-root": { width: "25ch" },
+      }}
+      noValidate
+      autoComplete="off"
+    >
+      <div className="meal-form">
+        <form>
+          <h2>Track your meal for today</h2>
+          <div className="input-field">
+            <label>
+              <TextField
+                id="outlined-number"
+                label="Qty"
+                type="number"
+                InputLabelProps={{
+                  shrink: true,
+                }}
+                helperText="Please enter the quantity of your meal"
+              />
+            </label>
+          </div>
 
-        <div className="form-inputs">
-          Food:
-          <label htmlFor="food" className="form-label">
-            <input
-              type="text"
-              name="food"
-              className="form-input"
-              placeholder="e.g. oatmeal, apple, etc"
-            />
-          </label>
-        </div>
+          <div className="input-field">
+            <label>
+              <TextField
+                id="standard-select-unit"
+                select
+                label="Unit"
+                helperText="Please select a unit"
+                value={unit}
+                onChange={handleUnitChange}
+              >
+                {units.map((option) => (
+                  <MenuItem key={option.value} value={option.value}>
+                    {option.label}
+                  </MenuItem>
+                ))}
+              </TextField>
+            </label>
+          </div>
 
-        <div className="form-inputs">
-          Time:
-          <TimePicker
-            showSeconds
-            value={time}
-            onChange={handleTimeChange}
-            className="time-field"
-          />
-        </div>
+          <div className="input-field">
+            <label>
+              <TextField
+                id="outlined-helperText"
+                label="Food"
+                // defaultValue="Default Value"
+                helperText="Please enter your meal"
+              />
+            </label>
+          </div>
 
-        <div className="form-inputs">
-          <button className="form-input-btn" type="submit">
+          <div className="input-field">
+            <label>
+              <TextField
+                id="time"
+                label="Time"
+                type="time"
+                defaultValue="12:00"
+                InputLabelProps={{
+                  shrink: true,
+                }}
+                inputProps={{
+                  step: 300, // 5 min
+                }}
+                sx={{ width: 150 }}
+                helperText="Please enter the time of your meal"
+              />
+            </label>
+          </div>
+
+          <Button variant="contained" color="secondary">
             Submit
-          </button>
-        </div>
-      </form>
-    </div>
+          </Button>
+        </form>
+      </div>
+    </Box>
   );
 }
 
