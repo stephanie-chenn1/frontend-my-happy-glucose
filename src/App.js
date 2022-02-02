@@ -1,91 +1,91 @@
 import "./App.css";
 import NavList from "./components/NavList";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+  Navigate,
+} from "react-router-dom";
 import Home from "./pages/Home";
 import Meals from "./pages/Meals";
 import Glucose from "./pages/Glucose";
-import TrackMeal from "./pages/TrackAMeal";
+import MealTracker from "./pages/TrackAMeal";
 import { useState, useEffect } from "react";
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router";
 
 function App() {
-  const [formFields, setFormFields] = useState({
-    qty: "",
-    unit: "",
-    food: "",
-    time: "00:00",
-    date: "",
-  });
-  const [isQtyValid, setQtyValid] = useState(true);
+  // let navigate = useNavigate();
+
   const [mealsData, setMealsData] = useState([]);
 
-  const handleUnitChange = (e) => {
-    setFormFields({
-      ...formFields,
-      unit: e.target.value,
-    });
-  };
+  // const handleUnitChange = (e) => {
+  //   setFormFields({
+  //     ...formFields,
+  //     unit: e.target.value,
+  //   });
+  // };
 
-  const handleQtyChange = (e) => {
-    if (e.target.value <= 0) {
-      setQtyValid(false);
-    } else {
-      setQtyValid(true);
-    }
+  // const handleQtyChange = (e) => {
+  //   if (e.target.value <= 0) {
+  //     setQtyValid(false);
+  //   } else {
+  //     setQtyValid(true);
+  //   }
 
-    setFormFields({
-      ...formFields,
-      qty: e.target.value,
-    });
-  };
+  //   setFormFields({
+  //     ...formFields,
+  //     qty: e.target.value,
+  //   });
+  // };
 
-  const handleFoodChange = (e) => {
-    setFormFields({
-      ...formFields,
-      food: e.target.value,
-    });
-  };
+  // const handleFoodChange = (e) => {
+  //   setFormFields({
+  //     ...formFields,
+  //     food: e.target.value,
+  //   });
+  // };
 
-  const handleTimeChange = (e) => {
-    setFormFields({
-      ...formFields,
-      time: e.target.value,
-    });
-  };
+  // const handleTimeChange = (e) => {
+  //   setFormFields({
+  //     ...formFields,
+  //     time: e.target.value,
+  //   });
+  // };
 
-  const handleDateChange = (e) => {
-    setFormFields({
-      ...formFields,
-      date: e.target.value,
-    });
-  };
+  // const handleDateChange = (e) => {
+  //   setFormFields({
+  //     ...formFields,
+  //     date: e.target.value,
+  //   });
+  // };
 
-  const addNewMeal = () => {
-    axios
-      .post("http://127.0.0.1:8000/api/users/1/meals", {
-        qty: formFields.qty,
-        unit: formFields.unit,
-        food: formFields.food,
-        time: formFields.time,
-        date: formFields.date,
-        user: 1,
-      })
-      .then((response) => {
-        console.log(response.data);
+  // const addNewMeal = () => {
+  //   axios
+  //     .post("http://127.0.0.1:8000/api/users/1/meals", {
+  //       qty: formFields.qty,
+  //       unit: formFields.unit,
+  //       food: formFields.food,
+  //       time: formFields.time,
+  //       date: formFields.date,
+  //       user: 1,
+  //     })
+  //     .then((response) => {
+  //       navigate("/");
+  //       console.log(response.data);
 
-        const newMealsData = [...mealsData];
-        newMealsData.push({
-          qty: response.data.qty,
-          unit: response.data.unit,
-          food: response.data.food,
-          time: response.data.time,
-          date: response.data.date,
-          user: response.data.user,
-        });
-      })
-      .catch((err) => console.log(err));
-  };
+  //       const newMealsData = [...mealsData];
+  //       newMealsData.push({
+  //         qty: response.data.qty,
+  //         unit: response.data.unit,
+  //         food: response.data.food,
+  //         time: response.data.time,
+  //         date: response.data.date,
+  //         user: response.data.user,
+  //       });
+  //     })
+  //     .catch((err) => console.log(err));
+  // };
 
   useEffect(() => {
     axios
@@ -108,16 +108,7 @@ function App() {
             path="/track-a-meal"
             exact
             element={
-              <TrackMeal
-                onQtyChange={handleQtyChange}
-                onUnitChange={handleUnitChange}
-                onFoodChange={handleFoodChange}
-                onTimeChange={handleTimeChange}
-                onDateChange={handleDateChange}
-                isQtyValid={isQtyValid}
-                mealFormFields={formFields}
-                submitMeal={addNewMeal}
-              />
+              <MealTracker mealsData={mealsData} setMealsData={setMealsData} />
             }
           />
         </Routes>

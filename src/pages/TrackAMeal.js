@@ -2,12 +2,14 @@ import React from "react";
 import "./TrackAMeal.css";
 import { Dropdown } from "react-bootstrap";
 import TimePicker from "react-time-picker";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
 import Input from "@mui/material/Input";
 import MenuItem from "@mui/material/MenuItem";
 import Box from "@mui/material/Box";
+import { useNavigate } from "react-router-dom";
+import axios from "axios";
 
 const units = [
   {
@@ -28,66 +30,55 @@ const units = [
   },
 ];
 
-const TrackMeal = (props) => {
-  let onUnitChange = props.onUnitChange;
-  let onQtyChange = props.onQtyChange;
-  let isQtyValid = props.isQtyValid;
-  let formFields = props.mealFormFields;
-  let onFoodChange = props.onFoodChange;
-  let onTimeChange = props.onTimeChange;
-  let onDateChange = props.onDateChange;
-  let submitMeal = props.submitMeal;
-  // const [formFields, setFormFields] = useState({
-  //   qty: "",
-  //   unit: "",
-  //   food: "",
-  //   time: "",
-  //   date: "",
-  // });
+const MealTracker = (props) => {
+  let navigate = useNavigate();
+  let mealsData = props.mealsData;
+  let setMealsData = props.setMealsData;
 
-  // const [isQtyValid, setQtyValid] = useState(true);
+  const [formFields, setFormFields] = useState({
+    qty: "",
+    unit: "",
+    food: "",
+    time: "00:00",
+    date: "2022-01-01",
+  });
+  const [isQtyValid, setQtyValid] = useState(true);
 
-  // const handleUnitChange = (e) => {
-  //   setFormFields({
-  //     ...formFields,
-  //     unit: e.target.value,
-  //   });
-  // };
+  const addNewMeal = () => {
+    axios
+      .post("http://127.0.0.1:8000/api/users/1/meals", {
+        qty: formFields.qty,
+        unit: formFields.unit,
+        food: formFields.food,
+        time: formFields.time,
+        date: formFields.date,
+        user: 1,
+      })
+      .then((response) => {
+        navigate("/");
+        console.log(response.data);
 
-  // const handleQtyChange = (e) => {
-  //   if (e.target.value <= 0) {
-  //     setQtyValid(false);
-  //   } else {
-  //     setQtyValid(true);
-  //   }
+        const newMealsData = [...mealsData];
+        newMealsData.push({
+          qty: response.data.qty,
+          unit: response.data.unit,
+          food: response.data.food,
+          time: response.data.time,
+          date: response.data.date,
+          user: response.data.user,
+        });
 
-  //   setFormFields({
-  //     ...formFields,
-  //     qty: e.target.value,
-  //   });
-  // };
-
-  // const handleFoodChange = (e) => {
-  //   setFormFields({
-  //     ...formFields,
-  //     food: e.target.value,
-  //   });
-  // };
-
-  // const handleTimeChange = (e) => {
-  //   console.log(e.target.value);
-  //   setFormFields({
-  //     ...formFields,
-  //     time: e.target.value,
-  //   });
-  // };
-
-  // const handleDateChange = (e) => {
-  //   setFormFields({
-  //     ...formFields,
-  //     date: e.target.value,
-  //   });
-  // };
+        setMealsData(newMealsData);
+        setFormFields({
+          qty: "",
+          unit: "",
+          food: "",
+          time: "00:00",
+          date: "2022-01-01",
+        });
+      })
+      .catch((err) => console.log(err));
+  };
 
   return (
     <Box
@@ -104,20 +95,26 @@ const TrackMeal = (props) => {
         <form>
           <h3>Meal tracker</h3>
           <div className="input-field">
-            {/* <label> */}
             {isQtyValid ? (
               <TextField
                 id="outlined-number"
                 label="Qty"
                 min="1"
                 type="number"
-                // InputLabelProps={{
-                //   shrink: true,
-                // }}
-                helperText="Please enter the quantity of your meal"
-                onChange={onQtyChange}
                 placeholder="1"
-                // value={qty}
+                helperText="Please enter the quantity of your meal"
+                onChange={(e) => {
+                  if (e.target.value <= 0) {
+                    setQtyValid(false);
+                  } else {
+                    setQtyValid(true);
+                  }
+
+                  setFormFields({
+                    ...formFields,
+                    qty: e.target.value,
+                  });
+                }}
               />
             ) : (
               <TextField
@@ -126,11 +123,20 @@ const TrackMeal = (props) => {
                 label="Error"
                 type="number"
                 helperText="Please enter a positive value"
-                onChange={onQtyChange}
+                onChange={(e) => {
+                  if (e.target.value <= 0) {
+                    setQtyValid(false);
+                  } else {
+                    setQtyValid(true);
+                  }
+
+                  setFormFields({
+                    ...formFields,
+                    qty: e.target.value,
+                  });
+                }}
               />
             )}
-
-            {/* </label> */}
           </div>
 
           <div className="input-field">
@@ -141,7 +147,12 @@ const TrackMeal = (props) => {
                 label="Unit"
                 helperText="Please select a unit"
                 value={formFields.unit}
-                onChange={onUnitChange}
+                onChange={(e) => {
+                  setFormFields({
+                    ...formFields,
+                    unit: e.target.value,
+                  });
+                }}
               >
                 {units.map((option) => (
                   <MenuItem key={option.value} value={option.value}>
@@ -157,9 +168,13 @@ const TrackMeal = (props) => {
               <TextField
                 id="outlined-helperText"
                 label="Food"
-                // defaultValue="Default Value"
                 helperText="Please enter your meal"
-                onChange={onFoodChange}
+                onChange={(e) => {
+                  setFormFields({
+                    ...formFields,
+                    food: e.target.value,
+                  });
+                }}
               />
             </label>
           </div>
@@ -174,12 +189,13 @@ const TrackMeal = (props) => {
                 InputLabelProps={{
                   shrink: true,
                 }}
-                // inputProps={{
-                //   step: 300, // 5 min
-                // }}
-                // sx={{ width: 150 }}
                 helperText="Please enter the time of your meal"
-                onChange={onTimeChange}
+                onChange={(e) => {
+                  setFormFields({
+                    ...formFields,
+                    time: e.target.value,
+                  });
+                }}
               />
             </label>
           </div>
@@ -189,17 +205,18 @@ const TrackMeal = (props) => {
               id="date"
               label="Date"
               type="date"
-              defaultValue="2022-02-01"
+              defaultValue="2022-01-01"
               helperText="Please enter the date of your meal"
-              onClick={onDateChange}
-              // sx={{ width: 220 }}
-              // InputLabelProps={{
-              //   shrink: true,
-              // }}
+              onClick={(e) => {
+                setFormFields({
+                  ...formFields,
+                  date: e.target.value,
+                });
+              }}
             />
           </div>
 
-          <Button variant="contained" color="secondary" onClick={submitMeal}>
+          <Button variant="contained" color="secondary" onClick={addNewMeal}>
             Submit
           </Button>
         </form>
@@ -208,4 +225,4 @@ const TrackMeal = (props) => {
   );
 };
 
-export default TrackMeal;
+export default MealTracker;
