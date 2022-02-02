@@ -35,6 +35,7 @@ const MealTracker = (props) => {
   let mealsData = props.mealsData;
   let setMealsData = props.setMealsData;
 
+  // States
   const [formFields, setFormFields] = useState({
     qty: "",
     unit: "",
@@ -43,6 +44,44 @@ const MealTracker = (props) => {
     date: "2022-01-01",
   });
   const [isQtyValid, setQtyValid] = useState(true);
+  // const [userSubmitStatus, setUserSubmitStatus] = useState(false);
+
+  // useEffect(() => {
+  //   axios
+  //     .post("http://127.0.0.1:8000/api/users/1/meals", {
+  //       qty: formFields.qty,
+  //       unit: formFields.unit,
+  //       food: formFields.food,
+  //       time: formFields.time,
+  //       date: formFields.date,
+  //       user: 1,
+  //     })
+  //     .then((response) => {
+  //       navigate("/");
+  //       console.log(response.data);
+
+  //       const newMealsData = [...mealsData];
+  //       newMealsData.push({
+  //         qty: response.data.qty,
+  //         unit: response.data.unit,
+  //         food: response.data.food,
+  //         time: response.data.time,
+  //         date: response.data.date,
+  //         user: response.data.user,
+  //         carb_count: response.data.carb_count,
+  //       });
+
+  //       setMealsData(newMealsData);
+  //       setFormFields({
+  //         qty: "",
+  //         unit: "",
+  //         food: "",
+  //         time: "00:00",
+  //         date: "2022-01-01",
+  //       });
+  //     })
+  //     .catch((err) => console.log(err));
+  // }, [userSubmitStatus]);
 
   const addNewMeal = () => {
     axios
@@ -55,7 +94,6 @@ const MealTracker = (props) => {
         user: 1,
       })
       .then((response) => {
-        navigate("/");
         console.log(response.data);
 
         const newMealsData = [...mealsData];
@@ -66,6 +104,7 @@ const MealTracker = (props) => {
           time: response.data.time,
           date: response.data.date,
           user: response.data.user,
+          carb_count: response.data.carb_count,
         });
 
         setMealsData(newMealsData);
@@ -76,6 +115,7 @@ const MealTracker = (props) => {
           time: "00:00",
           date: "2022-01-01",
         });
+        navigate("/");
       })
       .catch((err) => console.log(err));
   };

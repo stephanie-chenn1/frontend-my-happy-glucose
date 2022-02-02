@@ -1,6 +1,6 @@
 import React from "react";
 import "./Home.css";
-import Summary from "../components/DailySummary";
+import DailySummary from "../components/DailySummary";
 import { useNavigate } from "react-router-dom";
 
 function Home() {
@@ -9,7 +9,7 @@ function Home() {
   return (
     <div className="home">
       <h1>Welcome, Stephanie!</h1>
-      <Summary />
+      <DailySummary />
       <div class="btn-group">
         <button
           className="button"
