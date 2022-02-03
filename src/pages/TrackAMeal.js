@@ -70,7 +70,6 @@ const MealTracker = (props) => {
           user: response.data.user,
           carb_count: response.data.carb_count,
         });
-
         setMealsData(newMealsData);
         setFormFields({
           qty: "",
@@ -91,7 +90,7 @@ const MealTracker = (props) => {
       sx={{
         display: "flex",
         flexDirection: "column",
-        "& .MuiTextField-root": { m: 1, width: "25ch" },
+        "& .MuiTextField-root": { m: 1, width: "21ch" },
       }}
       noValidate
       autoComplete="off"
