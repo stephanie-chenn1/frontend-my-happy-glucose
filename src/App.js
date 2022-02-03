@@ -15,6 +15,7 @@ import axios from "axios";
 
 function App() {
   const [mealsData, setMealsData] = useState([]);
+  const [numOfMealsSubmitted, setNumOfMealsSubmitted] = useState(0);
 
   useEffect(() => {
     axios
@@ -30,14 +31,30 @@ function App() {
       <Router>
         <NavList />
         <Routes>
-          <Route path="/" exact element={<Home />} />
+          <Route
+            path="/"
+            exact
+            element={
+              <Home
+                numOfMealsSubmitted={numOfMealsSubmitted}
+                setNumOfMealsSubmitted={setNumOfMealsSubmitted}
+                mealsData={mealsData}
+                setMealsData={setMealsData}
+              />
+            }
+          />
           <Route path="/meals" exact element={<Meals />} />
           <Route path="/glucose" exact element={<Glucose />} />
           <Route
             path="/track-a-meal"
             exact
             element={
-              <MealTracker mealsData={mealsData} setMealsData={setMealsData} />
+              <MealTracker
+                setNumOfMealsSubmitted={setNumOfMealsSubmitted}
+                numOfMealsSubmitted={numOfMealsSubmitted}
+                mealsData={mealsData}
+                setMealsData={setMealsData}
+              />
             }
           />
         </Routes>

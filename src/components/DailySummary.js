@@ -1,10 +1,19 @@
 import React from "react";
+import "./DailySummary.css";
+import { useState, useEffect } from "react";
 
-const DailySummary = () => {
+const DailySummary = (props) => {
+  let numOfMealsSubmitted = props.numOfMealsSubmitted;
+  let setNumOfMealsSubmitted = props.setNumOfMealsSubmitted;
+
   return (
-    <div className="summary">
-      <h3>You have not tracked any activities for today.</h3>
-      <h3>Click below to log your activity.</h3>
+    <div>
+      {numOfMealsSubmitted > 0 ? (
+        <div>
+          <h2>Daily Summary</h2>
+          <h3>‣You've submitted {numOfMealsSubmitted} meal(s) today!</h3>
+        </div>
+      ) : null}
     </div>
   );
 };

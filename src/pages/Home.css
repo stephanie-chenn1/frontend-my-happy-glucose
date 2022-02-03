@@ -1,7 +1,8 @@
-.home {
+/* .home {
     text-align:center;
     margin-left: 100px;
-}
+} */
+
 
 .button {
     border-radius: 50px;
@@ -12,12 +13,12 @@
     padding: 15px 20px;
     background-color: lightpink;
     color: white;
-    margin-right: 20px;
-    margin-bottom: 20px;
-    width: 40%;
+    /* margin-right: 20px;
+    margin-bottom: 20px; */
+    width: 30%;
 }
 
-.btn-group{
+/* .btn-group{
     height:50px;
     width: 800px;
     display: flex;
@@ -29,3 +30,7 @@
 .btn-group button:hover {
     background-color:lightsteelblue
 }
+
+.summary {
+    margin-bottom: 250px; 
+}  */
