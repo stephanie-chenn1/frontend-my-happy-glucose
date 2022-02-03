@@ -20,6 +20,7 @@
     "react-simple-timefield": "^3.2.5",
     "react-time-picker": "^4.4.4",
     "react-time-picker-input": "^2.0.6",
+    "recharts": "^2.1.8",
     "web-vitals": "^2.1.4"
   },
   "scripts": {

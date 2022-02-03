@@ -43,7 +43,13 @@ function App() {
               />
             }
           />
-          <Route path="/meals" exact element={<Meals />} />
+          <Route
+            path="/meals"
+            exact
+            element={
+              <Meals mealsData={mealsData} setMealsData={setMealsData} />
+            }
+          />
           <Route path="/glucose" exact element={<Glucose />} />
           <Route
             path="/track-a-meal"
