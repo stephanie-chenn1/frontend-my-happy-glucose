@@ -1,14 +1,14 @@
 .navbar {
-    background-color: pink;
+    background-color: rgb(245, 245, 245);
     height: 80px;
     display: flex;
     justify-content: start;
     align-items: center;
 }
 
-.app-name {
-    margin-right:10px;
-}
+/* .app-name {
+    margin-left: 10px;
+} */
 
 .menu-bars {
     margin-left: 2rem;

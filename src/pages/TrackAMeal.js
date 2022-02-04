@@ -88,16 +88,22 @@ const MealTracker = (props) => {
     <Box
       component="form"
       sx={{
+        mt: 2,
         display: "flex",
         flexDirection: "column",
         "& .MuiTextField-root": { m: 1, width: "21ch" },
+        border: "2px dashed grey",
+        height: 730,
+        width: 400,
+        alignItems: "center",
+        mx: "auto",
       }}
       noValidate
       autoComplete="off"
     >
       <div className="meal-form">
         <form>
-          <h3>Meal tracker</h3>
+          <h3>Let's track your meals!</h3>
           <div className="input-field">
             {isQtyValid ? (
               <TextField
