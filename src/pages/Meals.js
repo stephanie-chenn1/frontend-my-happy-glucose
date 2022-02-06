@@ -12,10 +12,10 @@ import {
 } from "recharts";
 import { DataGrid } from "@mui/x-data-grid";
 import axios from "axios";
+import CircularProgress from "@mui/material/CircularProgress";
 
 const columns = [
   { field: "id", headerName: "ID", width: 100 },
-  { field: "date", headerName: "Date Consumed", width: 150 },
   { field: "qty", headerName: "Quantity", width: 150 },
   { field: "unit", headerName: "Unit", width: 100 },
   { field: "food", headerName: "Food", width: 150 },
@@ -60,41 +60,23 @@ const Meals = (props) => {
       .get("http://127.0.0.1:8000/api/users/1/meals")
       .then((response) => {
         setMealsData([...response.data]);
-        console.log(response.data);
-        mealsData.map((meal) =>
-          dateAndCarbData.push({
-            date: meal.date,
-            carb_count: meal.carb_count,
-            food: meal.food,
-          })
-        );
-        // sorts date by ascending order
-        let sortedData = sortDates(dateAndCarbData);
-        let finalArray = compileMealsForEachDay(sortedData);
-
-        setdateAndCarbData(finalArray);
-
-        console.log(finalArray);
-        console.log(mealsData);
       })
       .catch((err) => console.log(err));
-
-    // mealsData.map((meal) =>
-    //   dateAndCarbData.push({
-    //     date: meal.date,
-    //     carb_count: meal.carb_count,
-    //     food: meal.food,
-    //   })
-    // );
-    // // sorts date by ascending order
-    // let sortedData = sortDates(dateAndCarbData);
-    // let finalArray = compileMealsForEachDay(sortedData);
-
-    // setdateAndCarbData(finalArray);
-
-    // console.log(finalArray);
-    // console.log(mealsData);
   }, []);
+
+  useEffect(() => {
+    mealsData.map((meal) =>
+      dateAndCarbData.push({
+        date: meal.date,
+        carb_count: meal.carb_count,
+        food: meal.food,
+      })
+    );
+    console.log(dateAndCarbData);
+    let sortedData = sortDates(dateAndCarbData);
+    let finalArray = compileMealsForEachDay(sortedData);
+    setdateAndCarbData(finalArray);
+  }, [mealsData]);
 
   return (
     <div className="meals">
@@ -107,10 +89,11 @@ const Meals = (props) => {
             <YAxis></YAxis>
             <Legend />
             <Tooltip />
-            <Line dataKey="carb_count" stroke="red" activeDot={{ r: 8 }} />
+            <Line dataKey="carb_count" stroke="red" activeDot={{ r: 5 }} />
           </LineChart>
         </ResponsiveContainer>
       </div>
+
       <div style={{ height: 300, width: "60%", margin: "auto" }}>
         <DataGrid
           rows={mealsData}
