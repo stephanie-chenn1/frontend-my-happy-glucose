@@ -25,7 +25,14 @@ const Home = (props) => {
         >
           Track your meal for carb count
         </button>
-        <button className="button">Track your glucose level</button>
+        <button
+          className="button"
+          onClick={() => {
+            navigate("/track-glucose");
+          }}
+        >
+          Track your glucose level
+        </button>
         <button className="button">Track your fitness</button>
         <button className="button">Track your sleep</button>
         <button className="button">Track your mood</button>

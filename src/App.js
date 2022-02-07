@@ -8,8 +8,8 @@ import {
 } from "react-router-dom";
 import Home from "./pages/Home";
 import Meals from "./pages/Meals";
-import Glucose from "./pages/Glucose";
 import MealTracker from "./pages/TrackAMeal";
+import GlucoseTracker from "./pages/TrackGlucose"
 import { useState, useEffect } from "react";
 import axios from "axios";
 
@@ -51,7 +51,6 @@ function App() {
               <Meals mealsData={mealsData} setMealsData={setMealsData} />
             }
           />
-          <Route path="/glucose" exact element={<Glucose />} />
           <Route
             path="/track-a-meal"
             exact
@@ -61,6 +60,14 @@ function App() {
                 numOfMealsSubmitted={numOfMealsSubmitted}
                 mealsData={mealsData}
                 setMealsData={setMealsData}
+              />
+            }
+          />
+          <Route
+            path="/track-glucose"
+            exact
+            element={
+              <GlucoseTracker
               />
             }
           />
