@@ -17,14 +17,15 @@ function App() {
   const [mealsData, setMealsData] = useState([]);
   const [numOfMealsSubmitted, setNumOfMealsSubmitted] = useState(0);
 
-  // useEffect(() => {
-  //   axios
-  //     .get("http://127.0.0.1:8000/api/users/1/meals")
-  //     .then((response) => {
-  //       setMealsData([...response.data]);
-  //     })
-  //     .catch((err) => console.log(err));
-  // }, []);
+  useEffect(() => {
+    axios
+      .get("http://127.0.0.1:8000/api/users/1/meals")
+      .then((response) => {
+        console.log(response.data);
+        setMealsData([...response.data]);
+      })
+      .catch((err) => console.log(err));
+  }, []);
 
   return (
     <div>

@@ -69,6 +69,7 @@ const MealTracker = (props) => {
           date: response.data.date,
           user: response.data.user,
           carb_count: response.data.carb_count,
+          id: response.data.id,
         });
         setMealsData(newMealsData);
         setFormFields({
@@ -217,7 +218,7 @@ const MealTracker = (props) => {
               type="date"
               defaultValue="2022-01-01"
               helperText="Please enter the date of your meal"
-              onClick={(e) => {
+              onChange={(e) => {
                 setFormFields({
                   ...formFields,
                   date: e.target.value,
