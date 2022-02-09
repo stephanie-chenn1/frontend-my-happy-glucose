@@ -9,23 +9,23 @@ import {
 import Home from "./pages/Home";
 import Meals from "./pages/Meals";
 import MealTracker from "./pages/TrackAMeal";
-import GlucoseTracker from "./pages/TrackGlucose"
+import GlucoseTracker from "./pages/TrackGlucose";
 import { useState, useEffect } from "react";
 import axios from "axios";
 
 function App() {
-  const [mealsData, setMealsData] = useState([]);
+  // const [mealsData, setMealsData] = useState([]);
   const [numOfMealsSubmitted, setNumOfMealsSubmitted] = useState(0);
-
-  useEffect(() => {
-    axios
-      .get("http://127.0.0.1:8000/api/users/1/meals")
-      .then((response) => {
-        console.log(response.data);
-        setMealsData([...response.data]);
-      })
-      .catch((err) => console.log(err));
-  }, []);
+  const [numOfGlucoseSubmitted, setNumOfGlucoseSubmitted] = useState(0);
+  // useEffect(() => {
+  //   axios
+  //     .get("http://127.0.0.1:8000/api/users/1/meals")
+  //     .then((response) => {
+  //       console.log(response.data);
+  //       setMealsData([...response.data]);
+  //     })
+  //     .catch((err) => console.log(err));
+  // }, []);
 
   return (
     <div>
@@ -38,19 +38,11 @@ function App() {
             element={
               <Home
                 numOfMealsSubmitted={numOfMealsSubmitted}
-                setNumOfMealsSubmitted={setNumOfMealsSubmitted}
-                mealsData={mealsData}
-                setMealsData={setMealsData}
+                numOfGlucoseSubmitted={numOfGlucoseSubmitted}
               />
             }
           />
-          <Route
-            path="/meals"
-            exact
-            element={
-              <Meals mealsData={mealsData} setMealsData={setMealsData} />
-            }
-          />
+          <Route path="/meals" exact element={<Meals />} />
           <Route
             path="/track-a-meal"
             exact
@@ -58,8 +50,6 @@ function App() {
               <MealTracker
                 setNumOfMealsSubmitted={setNumOfMealsSubmitted}
                 numOfMealsSubmitted={numOfMealsSubmitted}
-                mealsData={mealsData}
-                setMealsData={setMealsData}
               />
             }
           />
@@ -68,6 +58,8 @@ function App() {
             exact
             element={
               <GlucoseTracker
+                setNumOfGlucoseSubmitted={setNumOfGlucoseSubmitted}
+                numOfGlucoseSubmitted={numOfGlucoseSubmitted}
               />
             }
           />

@@ -4,16 +4,21 @@ import { useState, useEffect } from "react";
 
 const DailySummary = (props) => {
   let numOfMealsSubmitted = props.numOfMealsSubmitted;
-  let setNumOfMealsSubmitted = props.setNumOfMealsSubmitted;
+  let numOfGlucoseSubmitted = props.numOfGlucoseSubmitted;
 
   return (
     <div>
-      {numOfMealsSubmitted > 0 ? (
-        <div>
-          <h2>Daily Summary</h2>
+      <div>
+        <h2>Daily Summary</h2>
+        {numOfMealsSubmitted > 0 ? (
           <h3>‣You've submitted {numOfMealsSubmitted} meal(s) today!</h3>
-        </div>
-      ) : null}
+        ) : null}
+        {numOfGlucoseSubmitted > 0 ? (
+          <h3>
+            ‣You've submitted {numOfGlucoseSubmitted} glucose reading(s) today!
+          </h3>
+        ) : null}
+      </div>
     </div>
   );
 };

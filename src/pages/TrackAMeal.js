@@ -32,8 +32,8 @@ const units = [
 
 const MealTracker = (props) => {
   let navigate = useNavigate();
-  let mealsData = props.mealsData;
-  let setMealsData = props.setMealsData;
+  // let mealsData = props.mealsData;
+  // let setMealsData = props.setMealsData;
   let numOfMealsSubmitted = props.numOfMealsSubmitted;
   let setNumOfMealsSubmitted = props.setNumOfMealsSubmitted;
 
@@ -60,18 +60,18 @@ const MealTracker = (props) => {
       .then((response) => {
         console.log(response.data);
 
-        const newMealsData = [...mealsData];
-        newMealsData.push({
-          qty: response.data.qty,
-          unit: response.data.unit,
-          food: response.data.food,
-          time: response.data.time,
-          date: response.data.date,
-          user: response.data.user,
-          carb_count: response.data.carb_count,
-          id: response.data.id,
-        });
-        setMealsData(newMealsData);
+        // const newMealsData = [...mealsData];
+        // newMealsData.push({
+        //   qty: response.data.qty,
+        //   unit: response.data.unit,
+        //   food: response.data.food,
+        //   time: response.data.time,
+        //   date: response.data.date,
+        //   user: response.data.user,
+        //   carb_count: response.data.carb_count,
+        //   id: response.data.id,
+        // });
+        // setMealsData(newMealsData);
         setFormFields({
           qty: "",
           unit: "",
@@ -151,64 +151,58 @@ const MealTracker = (props) => {
           </div>
 
           <div className="input-field">
-            <label>
-              <TextField
-                id="standard-select-unit"
-                select
-                label="Unit"
-                helperText="Please select a unit"
-                value={formFields.unit}
-                onChange={(e) => {
-                  setFormFields({
-                    ...formFields,
-                    unit: e.target.value,
-                  });
-                }}
-              >
-                {units.map((option) => (
-                  <MenuItem key={option.value} value={option.value}>
-                    {option.label}
-                  </MenuItem>
-                ))}
-              </TextField>
-            </label>
+            <TextField
+              id="standard-select-unit"
+              select
+              label="Unit"
+              helperText="Please select a unit"
+              value={formFields.unit}
+              onChange={(e) => {
+                setFormFields({
+                  ...formFields,
+                  unit: e.target.value,
+                });
+              }}
+            >
+              {units.map((option) => (
+                <MenuItem key={option.value} value={option.value}>
+                  {option.label}
+                </MenuItem>
+              ))}
+            </TextField>
           </div>
 
           <div className="input-field">
-            <label>
-              <TextField
-                id="outlined-helperText"
-                label="Food"
-                helperText="Please enter your meal"
-                onChange={(e) => {
-                  setFormFields({
-                    ...formFields,
-                    food: e.target.value,
-                  });
-                }}
-              />
-            </label>
+            <TextField
+              id="outlined-helperText"
+              label="Food"
+              helperText="Please enter your meal"
+              onChange={(e) => {
+                setFormFields({
+                  ...formFields,
+                  food: e.target.value,
+                });
+              }}
+            />
           </div>
 
           <div className="input-field">
-            <label>
-              <TextField
-                id="time"
-                label="Time"
-                type="time"
-                defaultValue="12:00"
-                InputLabelProps={{
-                  shrink: true,
-                }}
-                helperText="Please enter the time of your meal"
-                onChange={(e) => {
-                  setFormFields({
-                    ...formFields,
-                    time: e.target.value,
-                  });
-                }}
-              />
-            </label>
+            <TextField
+              id="time"
+              label="Time"
+              type="time"
+              defaultValue="12:00"
+              InputLabelProps={{
+                shrink: true,
+              }}
+              helperText="Please enter the time of your meal"
+              onChange={(e) => {
+                setFormFields({
+                  ...formFields,
+                  time: e.target.value,
+                });
+              }}
+            />
           </div>
 
           <div className="input-field">

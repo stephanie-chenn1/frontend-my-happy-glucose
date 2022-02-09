@@ -7,11 +7,12 @@ import DailySummary from "../components/DailySummary";
 import Paper from "@mui/material/Paper";
 import Stack from "@mui/material/Stack";
 import { styled } from "@mui/material/styles";
+import { useState, useEffect } from "react";
 
 const Home = (props) => {
   const navigate = useNavigate();
   let numOfMealsSubmitted = props.numOfMealsSubmitted;
-  let setNumOfMealsSubmitted = props.setNumOfMealsSubmitted;
+  let numOfGlucoseSubmitted = props.numOfGlucoseSubmitted;
 
   return (
     <div>
@@ -37,8 +38,8 @@ const Home = (props) => {
         <button className="button">Track your sleep</button>
         <button className="button">Track your mood</button>
         <DailySummary
-          setNumOfMealsSubmitted={setNumOfMealsSubmitted}
           numOfMealsSubmitted={numOfMealsSubmitted}
+          numOfGlucoseSubmitted={numOfGlucoseSubmitted}
         />
       </Stack>
     </div>
