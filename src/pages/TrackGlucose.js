@@ -27,6 +27,7 @@ const GlucoseTracker = (props) => {
         date: formFields.date,
         time: formFields.time,
         glucose: formFields.glucose,
+        notes: formFields.notes,
         user: 1,
       })
       .then((response) => {
