@@ -10,6 +10,7 @@ import Home from "./pages/Home";
 import Meals from "./pages/Meals";
 import MealTracker from "./pages/TrackAMeal";
 import GlucoseTracker from "./pages/TrackGlucose";
+import Glucose from "./pages/Glucose";
 import { useState, useEffect } from "react";
 import axios from "axios";
 
@@ -63,6 +64,7 @@ function App() {
               />
             }
           />
+          <Route path="/glucose" exact element={<Glucose />} />
         </Routes>
       </Router>
     </div>

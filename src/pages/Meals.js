@@ -32,25 +32,7 @@ const Meals = (props) => {
   // Put helper functions in separate file
   const sortDates = (data) => {
     let sorted_dates = data.sort((a, b) => (a.date > b.date ? 1 : -1));
-    let uniqueDates = new Set();
-    let finalArray = [];
-    let index = null;
-
-    for (const obj of sorted_dates) {
-      if (uniqueDates.has(obj.date)) {
-        for (var i = 0; i < finalArray.length; i++) {
-          if (finalArray[i].date === obj.date) {
-            index = i;
-            break;
-          }
-        }
-        finalArray[index].carb_count += obj.carb_count;
-      } else {
-        uniqueDates.add(obj.date);
-        finalArray.push(obj);
-      }
-    }
-    return finalArray;
+    return sorted_dates
   };
 
   const compileMealsForEachDay = (data) => {
