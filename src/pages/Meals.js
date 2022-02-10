@@ -32,7 +32,7 @@ const Meals = (props) => {
   // Put helper functions in separate file
   const sortDates = (data) => {
     let sorted_dates = data.sort((a, b) => (a.date > b.date ? 1 : -1));
-    return sorted_dates
+    return sorted_dates;
   };
 
   const compileMealsForEachDay = (data) => {
@@ -85,7 +85,7 @@ const Meals = (props) => {
 
   return (
     <div className="meals">
-      <h1>All Meals by Date</h1>
+      <h1>All Meals Tracked</h1>
       <div style={{ height: 400, width: "60%", margin: "auto" }}>
         <DataGrid
           rows={mealsData}
