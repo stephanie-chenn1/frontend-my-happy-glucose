@@ -86,6 +86,13 @@ const MealTracker = (props) => {
       })
       .catch((err) => {
         console.log(err);
+        setFormFields({
+          qty: "",
+          unit: "",
+          food: "",
+          time: "00:00",
+          date: "2022-01-01",
+        });
         setErrorStatus(true);
       });
   };

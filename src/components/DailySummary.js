@@ -11,11 +11,14 @@ const DailySummary = (props) => {
       <div>
         <h2>Daily Summary</h2>
         {numOfMealsSubmitted > 0 ? (
-          <h3>‣You've submitted {numOfMealsSubmitted} meal(s) today!</h3>
+          <h3>
+            ‣You've successfully submitted {numOfMealsSubmitted} meal(s) today!
+          </h3>
         ) : null}
         {numOfGlucoseSubmitted > 0 ? (
           <h3>
-            ‣You've submitted {numOfGlucoseSubmitted} glucose reading(s) today!
+            ‣You've successfully submitted {numOfGlucoseSubmitted} glucose
+            reading(s) today!
           </h3>
         ) : null}
       </div>
