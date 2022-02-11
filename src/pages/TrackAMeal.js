@@ -61,19 +61,6 @@ const MealTracker = (props) => {
       })
       .then((response) => {
         console.log(response.data);
-
-        // const newMealsData = [...mealsData];
-        // newMealsData.push({
-        //   qty: response.data.qty,
-        //   unit: response.data.unit,
-        //   food: response.data.food,
-        //   time: response.data.time,
-        //   date: response.data.date,
-        //   user: response.data.user,
-        //   carb_count: response.data.carb_count,
-        //   id: response.data.id,
-        // });
-        // setMealsData(newMealsData);
         setFormFields({
           qty: "",
           unit: "",

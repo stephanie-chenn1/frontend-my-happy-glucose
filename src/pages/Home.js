@@ -34,13 +34,22 @@ const Home = (props) => {
         >
           Track your glucose level
         </button>
-        <button className="button">Track your fitness</button>
+        <button
+          className="button"
+          onClick={() => {
+            navigate("/track-fitness");
+          }}
+        >
+          Track your fitness
+        </button>
         <button className="button">Track your sleep</button>
         <button className="button">Track your mood</button>
-        <DailySummary
-          numOfMealsSubmitted={numOfMealsSubmitted}
-          numOfGlucoseSubmitted={numOfGlucoseSubmitted}
-        />
+        {numOfMealsSubmitted || numOfGlucoseSubmitted ? (
+          <DailySummary
+            numOfMealsSubmitted={numOfMealsSubmitted}
+            numOfGlucoseSubmitted={numOfGlucoseSubmitted}
+          />
+        ) : null}
       </Stack>
     </div>
   );

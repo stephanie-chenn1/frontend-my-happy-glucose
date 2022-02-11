@@ -1,5 +1,4 @@
 import { useState, useEffect } from "react";
-import "./Meals.css";
 import {
   LineChart,
   ResponsiveContainer,
@@ -22,37 +21,7 @@ const columns = [
 ];
 
 const Glucose = () => {
-  const [dateAndGlucoseData, setDateAndGlucoseData] = useState([]);
   const [glucoseData, setGlucoseData] = useState([]);
-
-  // Put helper functions in separate file
-  // const sortDates = (data) => {
-  //   let arrayForSort = [...data];
-  //   let sorted_dates = arrayForSort((a, b) => (a.date > b.date ? 1 : -1));
-  //   return sorted_dates;
-  // };
-
-  // const compileGlucoseForEachDay = (data) => {
-  //   let uniqueDates = new Set();
-  //   let finalArray = [];
-  //   let index = null;
-
-  //   for (const obj of data) {
-  //     if (uniqueDates.has(obj.date)) {
-  //       for (var i = 0; i < finalArray.length; i++) {
-  //         if (finalArray[i].date === obj.date) {
-  //           index = i;
-  //           break;
-  //         }
-  //       }
-  //       finalArray[index].carb_count += obj.carb_count;
-  //     } else {
-  //       uniqueDates.add(obj.date);
-  //       finalArray.push(obj);
-  //     }
-  //   }
-  //   return finalArray;
-  // };
 
   useEffect(
     () =>
