@@ -8,6 +8,7 @@ import {
 } from "react-router-dom";
 import Home from "./pages/Home";
 import Meals from "./pages/Meals";
+import Fitness from "./pages/Fitness";
 import MealTracker from "./pages/TrackAMeal";
 import GlucoseTracker from "./pages/TrackGlucose";
 import Glucose from "./pages/Glucose";
@@ -67,6 +68,7 @@ function App() {
               />
             }
           />
+          <Route path="/fitness" exact element={<Fitness />} />
         </Routes>
       </Router>
     </div>
