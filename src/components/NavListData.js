@@ -7,7 +7,7 @@ import * as GiIcons from "react-icons/gi";
 export const NavListData = [
   {
     title: "Home",
-    path: "/",
+    path: "/dashboard",
     icon: <AiIcons.AiFillHome />,
     cName: "nav-text",
   },

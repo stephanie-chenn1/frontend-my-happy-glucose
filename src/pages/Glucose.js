@@ -11,6 +11,7 @@ import {
 } from "recharts";
 import { DataGrid } from "@mui/x-data-grid";
 import axios from "axios";
+import NavList from "../components/NavList";
 
 const columns = [
   { field: "id", headerName: "ID", width: 80 },
@@ -41,29 +42,32 @@ const Glucose = () => {
   );
 
   return (
-    <div className="meals">
-      <h1>All Glucose Readings Tracked</h1>
-      <div style={{ height: 400, width: "60%", margin: "auto" }}>
-        <DataGrid
-          rows={glucoseData}
-          columns={columns}
-          pageSize={5}
-          rowsPerPageOptions={[5]}
-        />
-      </div>
-      <div className="line-graph">
-        <ResponsiveContainer width="80%" aspect={3}>
-          {glucoseData ? (
-            <LineChart data={glucoseData} margin={{ left: 220, top: 50 }}>
-              <CartesianGrid />
-              <XAxis dataKey="date" interval={"preserveStartEnd"} />
-              <YAxis></YAxis>
-              <Legend />
-              <Tooltip />
-              <Line dataKey="glucose" stroke="red" activeDot={{ r: 5 }} />
-            </LineChart>
-          ) : null}
-        </ResponsiveContainer>
+    <div>
+      <NavList />
+      <div className="meals">
+        <h1>All Glucose Readings Tracked</h1>
+        <div style={{ height: 400, width: "60%", margin: "auto" }}>
+          <DataGrid
+            rows={glucoseData}
+            columns={columns}
+            pageSize={5}
+            rowsPerPageOptions={[5]}
+          />
+        </div>
+        <div className="line-graph">
+          <ResponsiveContainer width="80%" aspect={3}>
+            {glucoseData ? (
+              <LineChart data={glucoseData} margin={{ left: 220, top: 50 }}>
+                <CartesianGrid />
+                <XAxis dataKey="date" interval={"preserveStartEnd"} />
+                <YAxis></YAxis>
+                <Legend />
+                <Tooltip />
+                <Line dataKey="glucose" stroke="red" activeDot={{ r: 5 }} />
+              </LineChart>
+            ) : null}
+          </ResponsiveContainer>
+        </div>
       </div>
     </div>
   );

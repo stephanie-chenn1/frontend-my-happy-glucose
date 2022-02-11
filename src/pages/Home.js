@@ -8,6 +8,7 @@ import Paper from "@mui/material/Paper";
 import Stack from "@mui/material/Stack";
 import { styled } from "@mui/material/styles";
 import { useState, useEffect } from "react";
+import NavList from "../components/NavList";
 
 const Home = (props) => {
   const navigate = useNavigate();
@@ -17,6 +18,7 @@ const Home = (props) => {
 
   return (
     <div>
+      <NavList />
       <Stack spacing={2} alignItems="center">
         <HomeHeader />
         <button

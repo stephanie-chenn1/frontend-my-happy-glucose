@@ -1,5 +1,4 @@
 import "./App.css";
-import NavList from "./components/NavList";
 import {
   BrowserRouter as Router,
   Routes,
@@ -13,6 +12,7 @@ import MealTracker from "./pages/TrackAMeal";
 import GlucoseTracker from "./pages/TrackGlucose";
 import Glucose from "./pages/Glucose";
 import FitnessTracker from "./pages/TrackFitness";
+import Login from "./pages/Login";
 import { useState, useEffect } from "react";
 import axios from "axios";
 
@@ -24,10 +24,10 @@ function App() {
   return (
     <div>
       <Router>
-        <NavList />
         <Routes>
+          <Route path="/login" exact element={<Login />} />
           <Route
-            path="/"
+            path="/dashboard"
             exact
             element={
               <Home
