@@ -1,12 +1,18 @@
 import React from "react";
 import { Grid, Paper, Avatar, TextField, Button, Box } from "@material-ui/core";
+import { useState, useEffect } from "react";
 
 const Login = () => {
+  const [formFields, setFormFields] = useState({
+    username: "",
+    password: "",
+  });
+
   const paperStyle = {
     padding: 20,
     height: "60vh",
     width: 300,
-    margin: "20px auto",
+    margin: "100px auto",
   };
   const avatarStyle = { backgroundColor: "pink" };
   return (
@@ -21,6 +27,12 @@ const Login = () => {
           placeholder="Enter username"
           fullWidth
           required
+          onChange={(e) => {
+            setFormFields({
+              ...formFields,
+              username: e.target.value,
+            });
+          }}
         ></TextField>
         <TextField
           label="Password"
@@ -28,6 +40,12 @@ const Login = () => {
           type="password"
           fullWidth
           required
+          onChange={(e) => {
+            setFormFields({
+              ...formFields,
+              password: e.target.value,
+            });
+          }}
         ></TextField>
         <Box mt={2}>
           <Button variant="contained" type="submit" color="primary">
