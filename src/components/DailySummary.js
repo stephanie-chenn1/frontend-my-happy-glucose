@@ -5,6 +5,7 @@ import { useState, useEffect } from "react";
 const DailySummary = (props) => {
   let numOfMealsSubmitted = props.numOfMealsSubmitted;
   let numOfGlucoseSubmitted = props.numOfGlucoseSubmitted;
+  let numOfFitnessSubmitted = props.numOfFitnessSubmitted;
 
   return (
     <div>
@@ -19,6 +20,12 @@ const DailySummary = (props) => {
           <h3>
             ‣You've successfully submitted {numOfGlucoseSubmitted} glucose
             reading(s) today!
+          </h3>
+        ) : null}
+        {numOfFitnessSubmitted > 0 ? (
+          <h3>
+            ‣You've successfully submitted {numOfFitnessSubmitted} workout(s)
+            today!
           </h3>
         ) : null}
       </div>

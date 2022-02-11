@@ -13,6 +13,7 @@ const Home = (props) => {
   const navigate = useNavigate();
   let numOfMealsSubmitted = props.numOfMealsSubmitted;
   let numOfGlucoseSubmitted = props.numOfGlucoseSubmitted;
+  let numOfFitnessSubmitted = props.numOfFitnessSubmitted;
 
   return (
     <div>
@@ -44,10 +45,13 @@ const Home = (props) => {
         </button>
         <button className="button">Track your sleep</button>
         <button className="button">Track your mood</button>
-        {numOfMealsSubmitted || numOfGlucoseSubmitted ? (
+        {numOfMealsSubmitted ||
+        numOfGlucoseSubmitted ||
+        numOfFitnessSubmitted ? (
           <DailySummary
             numOfMealsSubmitted={numOfMealsSubmitted}
             numOfGlucoseSubmitted={numOfGlucoseSubmitted}
+            numOfFitnessSubmitted={numOfFitnessSubmitted}
           />
         ) : null}
       </Stack>

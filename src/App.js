@@ -33,6 +33,7 @@ function App() {
               <Home
                 numOfMealsSubmitted={numOfMealsSubmitted}
                 numOfGlucoseSubmitted={numOfGlucoseSubmitted}
+                numOfFitnessSubmitted={numOfFitnessSubmitted}
               />
             }
           />
