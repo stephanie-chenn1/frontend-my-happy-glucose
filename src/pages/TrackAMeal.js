@@ -13,6 +13,7 @@ import axios from "axios";
 import Alert from "@mui/material/Alert";
 import NavList from "../components/NavList";
 import { Paper } from "@material-ui/core";
+import DinnerDiningIcon from "@mui/icons-material/DinnerDining";
 
 const units = [
   {
@@ -35,18 +36,20 @@ const units = [
 
 const MealTracker = (props) => {
   let navigate = useNavigate();
-  // let mealsData = props.mealsData;
-  // let setMealsData = props.setMealsData;
+
   let numOfMealsSubmitted = props.numOfMealsSubmitted;
   let setNumOfMealsSubmitted = props.setNumOfMealsSubmitted;
+
+  let curr = new Date();
+  let dateToday = curr.toISOString().substr(0, 10);
 
   // States
   const [formFields, setFormFields] = useState({
     qty: "",
     unit: "",
     food: "",
-    time: "00:00",
-    date: "2022-01-01",
+    time: "",
+    date: dateToday,
   });
   const [isQtyValid, setQtyValid] = useState(true);
   const [ErrorStatus, setErrorStatus] = useState(false);
@@ -74,8 +77,8 @@ const MealTracker = (props) => {
           qty: "",
           unit: "",
           food: "",
-          time: "00:00",
-          date: "2022-01-01",
+          time: "",
+          date: dateToday,
         });
         setNumOfMealsSubmitted(numOfMealsSubmitted + 1);
         navigate("/dashboard");
@@ -86,32 +89,15 @@ const MealTracker = (props) => {
           qty: "",
           unit: "",
           food: "",
-          time: "00:00",
-          date: "2022-01-01",
+          time: "",
+          date: dateToday,
         });
         setErrorStatus(true);
       });
   };
-
   return (
     <div>
       <NavList />
-      {/* <Box
-        component="form"
-        sx={{
-          mt: 2,
-          display: "flex",
-          flexDirection: "column",
-          "& .MuiTextField-root": { m: 1, width: "21ch" },
-          border: "2px dashed grey",
-          height: 730,
-          width: 400,
-          alignItems: "center",
-          mx: "auto",
-        }}
-        noValidate
-        autoComplete="off"
-      > */}
       <Paper elevation={10} style={paperStyle}>
         <div className="meal-form">
           <form>
@@ -130,7 +116,9 @@ const MealTracker = (props) => {
               </div>
             ) : (
               <div>
-                <h3>Let's track your meals!</h3>
+                <h3>
+                  Let's track your meals! <DinnerDiningIcon />
+                </h3>
                 <div className="input-field">
                   {isQtyValid ? (
                     <TextField
@@ -147,7 +135,6 @@ const MealTracker = (props) => {
                         } else {
                           setQtyValid(true);
                         }
-
                         setFormFields({
                           ...formFields,
                           qty: e.target.value,
@@ -168,7 +155,6 @@ const MealTracker = (props) => {
                         } else {
                           setQtyValid(true);
                         }
-
                         setFormFields({
                           ...formFields,
                           qty: e.target.value,
@@ -177,7 +163,6 @@ const MealTracker = (props) => {
                     />
                   )}
                 </div>
-
                 <div className="input-field">
                   <TextField
                     id="standard-select-unit"
@@ -200,7 +185,6 @@ const MealTracker = (props) => {
                     ))}
                   </TextField>
                 </div>
-
                 <div className="input-field">
                   <TextField
                     id="outlined-helperText"
@@ -215,13 +199,11 @@ const MealTracker = (props) => {
                     }}
                   />
                 </div>
-
                 <div className="input-field">
                   <TextField
                     id="time"
                     label="Time"
                     type="time"
-                    defaultValue="12:00"
                     fullWidth
                     InputLabelProps={{
                       shrink: true,
@@ -235,13 +217,12 @@ const MealTracker = (props) => {
                     }}
                   />
                 </div>
-
                 <div className="input-field">
                   <TextField
                     id="date"
                     label="Date"
                     type="date"
-                    defaultValue="2022-01-01"
+                    defaultValue={dateToday}
                     fullWidth
                     helperText="Please enter the date of your meal"
                     onChange={(e) => {
@@ -252,7 +233,6 @@ const MealTracker = (props) => {
                     }}
                   />
                 </div>
-
                 <Button
                   variant="contained"
                   color="secondary"
@@ -264,7 +244,6 @@ const MealTracker = (props) => {
             )}
           </form>
         </div>
-        {/* </Box> */}
       </Paper>
     </div>
   );
