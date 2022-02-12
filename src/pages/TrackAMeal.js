@@ -12,6 +12,7 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import Alert from "@mui/material/Alert";
 import NavList from "../components/NavList";
+import { Paper } from "@material-ui/core";
 
 const units = [
   {
@@ -49,6 +50,13 @@ const MealTracker = (props) => {
   });
   const [isQtyValid, setQtyValid] = useState(true);
   const [ErrorStatus, setErrorStatus] = useState(false);
+
+  const paperStyle = {
+    padding: 20,
+    height: "65vh",
+    width: 500,
+    margin: "70px auto",
+  };
 
   const addNewMeal = () => {
     axios
@@ -88,7 +96,7 @@ const MealTracker = (props) => {
   return (
     <div>
       <NavList />
-      <Box
+      {/* <Box
         component="form"
         sx={{
           mt: 2,
@@ -103,7 +111,8 @@ const MealTracker = (props) => {
         }}
         noValidate
         autoComplete="off"
-      >
+      > */}
+      <Paper elevation={10} style={paperStyle}>
         <div className="meal-form">
           <form>
             {ErrorStatus ? (
@@ -131,6 +140,7 @@ const MealTracker = (props) => {
                       type="number"
                       placeholder="1"
                       helperText="Please enter the quantity of your meal"
+                      fullWidth
                       onChange={(e) => {
                         if (e.target.value <= 0) {
                           setQtyValid(false);
@@ -151,6 +161,7 @@ const MealTracker = (props) => {
                       label="Error"
                       type="number"
                       helperText="Please enter a positive value"
+                      fullWidth
                       onChange={(e) => {
                         if (e.target.value <= 0) {
                           setQtyValid(false);
@@ -173,6 +184,7 @@ const MealTracker = (props) => {
                     select
                     label="Unit"
                     helperText="Please select a unit"
+                    fullWidth
                     value={formFields.unit}
                     onChange={(e) => {
                       setFormFields({
@@ -194,6 +206,7 @@ const MealTracker = (props) => {
                     id="outlined-helperText"
                     label="Food"
                     helperText="Please enter your meal"
+                    fullWidth
                     onChange={(e) => {
                       setFormFields({
                         ...formFields,
@@ -209,6 +222,7 @@ const MealTracker = (props) => {
                     label="Time"
                     type="time"
                     defaultValue="12:00"
+                    fullWidth
                     InputLabelProps={{
                       shrink: true,
                     }}
@@ -228,6 +242,7 @@ const MealTracker = (props) => {
                     label="Date"
                     type="date"
                     defaultValue="2022-01-01"
+                    fullWidth
                     helperText="Please enter the date of your meal"
                     onChange={(e) => {
                       setFormFields({
@@ -249,7 +264,8 @@ const MealTracker = (props) => {
             )}
           </form>
         </div>
-      </Box>
+        {/* </Box> */}
+      </Paper>
     </div>
   );
 };
