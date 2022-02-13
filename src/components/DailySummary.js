@@ -6,6 +6,7 @@ const DailySummary = (props) => {
   let numOfMealsSubmitted = props.numOfMealsSubmitted;
   let numOfGlucoseSubmitted = props.numOfGlucoseSubmitted;
   let numOfFitnessSubmitted = props.numOfFitnessSubmitted;
+  let numOfMoodSubmitted = props.numOfMoodSubmitted;
 
   return (
     <div>
@@ -25,6 +26,12 @@ const DailySummary = (props) => {
         {numOfFitnessSubmitted > 0 ? (
           <h3>
             ‣You've successfully submitted {numOfFitnessSubmitted} workout(s)
+            today!
+          </h3>
+        ) : null}
+        {numOfMoodSubmitted > 0 ? (
+          <h3>
+            ‣You've successfully submitted {numOfMoodSubmitted} mood tracking(s)
             today!
           </h3>
         ) : null}

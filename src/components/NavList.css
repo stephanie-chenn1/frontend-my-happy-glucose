@@ -2,13 +2,9 @@
     background-color: rgb(245, 245, 245);
     height: 80px;
     display: flex;
-    justify-content: start;
+    justify-content: space-around;
     align-items: center;
 }
-
-/* .app-name {
-    margin-left: 10px;
-} */
 
 .menu-bars {
     margin-left: 2rem;

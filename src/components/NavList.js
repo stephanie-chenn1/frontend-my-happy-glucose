@@ -5,6 +5,7 @@ import * as AiIcons from "react-icons/ai";
 import { Link } from "react-router-dom";
 import "./NavList.css";
 import { IconContext } from "react-icons";
+import Button from "@mui/material/Button";
 
 const NavList = () => {
   const [sidebar, setSidebar] = useState(false);
@@ -14,10 +15,12 @@ const NavList = () => {
     <>
       <IconContext.Provider value={{ color: "black" }}>
         <div className="navbar">
-          <Link to="#" className="menu-bars">
-            <FaIcons.FaBars onClick={showSidebar} />
-          </Link>
-          <h3 className="app-name">myhappyglucose</h3>
+          <div className="topLeft">
+            <Link to="#" className="menu-bars">
+              <FaIcons.FaBars onClick={showSidebar} />
+            </Link>
+          </div>
+          <h3>myhappyglucose</h3>
         </div>
         <nav className={sidebar ? "nav-menu active" : "nav-menu"}>
           <ul className="nav-menu-items" onClick={showSidebar}>

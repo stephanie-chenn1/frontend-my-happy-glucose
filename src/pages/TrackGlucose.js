@@ -66,7 +66,7 @@ const GlucoseTracker = (props) => {
         noValidate
         autoComplete="off"
       >
-        <div className="meal-form">
+        <div className="glucose-form">
           <form>
             <h3>Let's track your glucose levels!</h3>
             <div className="input-field">

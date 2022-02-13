@@ -15,6 +15,7 @@ const Home = (props) => {
   let numOfMealsSubmitted = props.numOfMealsSubmitted;
   let numOfGlucoseSubmitted = props.numOfGlucoseSubmitted;
   let numOfFitnessSubmitted = props.numOfFitnessSubmitted;
+  let numOfMoodSubmitted = props.numOfMoodSubmitted;
 
   return (
     <div>
@@ -46,14 +47,23 @@ const Home = (props) => {
           Track your fitness
         </button>
         <button className="button">Track your sleep</button>
-        <button className="button">Track your mood</button>
+        <button
+          className="button"
+          onClick={() => {
+            navigate("/track-mood");
+          }}
+        >
+          Track your mood
+        </button>
         {numOfMealsSubmitted ||
         numOfGlucoseSubmitted ||
-        numOfFitnessSubmitted ? (
+        numOfFitnessSubmitted ||
+        numOfMoodSubmitted ? (
           <DailySummary
             numOfMealsSubmitted={numOfMealsSubmitted}
             numOfGlucoseSubmitted={numOfGlucoseSubmitted}
             numOfFitnessSubmitted={numOfFitnessSubmitted}
+            numOfMoodSubmitted={numOfMoodSubmitted}
           />
         ) : null}
       </Stack>

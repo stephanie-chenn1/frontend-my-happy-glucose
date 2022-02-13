@@ -12,6 +12,7 @@ import MealTracker from "./pages/TrackAMeal";
 import GlucoseTracker from "./pages/TrackGlucose";
 import Glucose from "./pages/Glucose";
 import FitnessTracker from "./pages/TrackFitness";
+import MoodTracker from "./pages/TrackMood";
 import Login from "./pages/Login";
 import { useState, useEffect } from "react";
 import axios from "axios";
@@ -20,6 +21,7 @@ function App() {
   const [numOfMealsSubmitted, setNumOfMealsSubmitted] = useState(0);
   const [numOfGlucoseSubmitted, setNumOfGlucoseSubmitted] = useState(0);
   const [numOfFitnessSubmitted, setNumOfFitnessSubmitted] = useState(0);
+  const [numOfMoodSubmitted, setNumOfMoodSubmitted] = useState(0);
 
   return (
     <div>
@@ -34,6 +36,7 @@ function App() {
                 numOfMealsSubmitted={numOfMealsSubmitted}
                 numOfGlucoseSubmitted={numOfGlucoseSubmitted}
                 numOfFitnessSubmitted={numOfFitnessSubmitted}
+                numOfMoodSubmitted={numOfMoodSubmitted}
               />
             }
           />
@@ -70,6 +73,16 @@ function App() {
             }
           />
           <Route path="/fitness" exact element={<Fitness />} />
+          <Route
+            path="/track-mood"
+            exact
+            element={
+              <MoodTracker
+                setNumOfMoodSubmitted={setNumOfMoodSubmitted}
+                numOfMoodSubmitted={numOfMoodSubmitted}
+              />
+            }
+          />
         </Routes>
       </Router>
     </div>
