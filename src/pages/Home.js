@@ -46,7 +46,6 @@ const Home = (props) => {
         >
           Track your fitness
         </button>
-        <button className="button">Track your sleep</button>
         <button
           className="button"
           onClick={() => {

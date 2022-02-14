@@ -13,6 +13,7 @@ import GlucoseTracker from "./pages/TrackGlucose";
 import Glucose from "./pages/Glucose";
 import FitnessTracker from "./pages/TrackFitness";
 import MoodTracker from "./pages/TrackMood";
+import Mood from "./pages/Mood";
 import Login from "./pages/Login";
 import { useState, useEffect } from "react";
 import axios from "axios";
@@ -83,6 +84,7 @@ function App() {
               />
             }
           />
+          <Route path="/mood" exact element={<Mood />} />
         </Routes>
       </Router>
     </div>

@@ -30,12 +30,6 @@ export const NavListData = [
     cName: "nav-text",
   },
   {
-    title: "Sleep",
-    path: "/sleep",
-    icon: <GiIcons.GiNightSleep />,
-    cName: "nav-text",
-  },
-  {
     title: "Mood",
     path: "/mood",
     icon: <IoIcons.IoMdHappy />,
