@@ -8,6 +8,7 @@ import { useState, useEffect } from "react";
 import Button from "@mui/material/Button";
 import MenuItem from "@mui/material/MenuItem";
 import NavList from "../components/NavList";
+import { Paper } from "@material-ui/core";
 
 const workoutTypes = [
   {
@@ -53,16 +54,26 @@ const workoutTypes = [
 ];
 
 const FitnessTracker = (props) => {
+  let navigate = useNavigate();
   let numOfFitnessSubmitted = props.numOfFitnessSubmitted;
   let setNumOfFitnessSubmitted = props.setNumOfFitnessSubmitted;
 
-  let navigate = useNavigate();
+  let curr = new Date();
+  let dateToday = curr.toISOString().substr(0, 10);
+
   const [formFields, setFormFields] = useState({
-    date: "2022-01-01",
+    date: dateToday,
     duration: "",
     workout_type: "",
     notes: "",
   });
+
+  const paperStyle = {
+    padding: 10,
+    height: "75vh",
+    width: 500,
+    margin: "30px auto",
+  };
 
   const addNewFitness = () => {
     axios
@@ -91,22 +102,7 @@ const FitnessTracker = (props) => {
   return (
     <div>
       <NavList />
-      <Box
-        component="form"
-        sx={{
-          mt: 2,
-          display: "flex",
-          flexDirection: "column",
-          "& .MuiTextField-root": { m: 1, width: "21ch" },
-          border: "2px dashed grey",
-          height: 750,
-          width: 400,
-          alignItems: "center",
-          mx: "auto",
-        }}
-        noValidate
-        autoComplete="off"
-      >
+      <Paper elevation={10} style={paperStyle}>
         <div className="meal-form">
           <form>
             <h3>Let's track your fitness!</h3>
@@ -115,8 +111,9 @@ const FitnessTracker = (props) => {
                 id="date"
                 label="Date"
                 type="date"
-                defaultValue="2022-01-01"
+                defaultValue={dateToday}
                 helperText="Please enter the date of your exercise"
+                fullWidth
                 onChange={(e) => {
                   setFormFields({
                     ...formFields,
@@ -131,6 +128,7 @@ const FitnessTracker = (props) => {
                 label="Duration"
                 type="number"
                 helperText="Please enter the length of your exercise"
+                fullWidth
                 onChange={(e) => {
                   setFormFields({
                     ...formFields,
@@ -146,6 +144,7 @@ const FitnessTracker = (props) => {
                 label="Workout Type"
                 helperText="Please select your workout type"
                 value={formFields.workout_type}
+                fullWidth
                 onChange={(e) => {
                   setFormFields({
                     ...formFields,
@@ -165,8 +164,9 @@ const FitnessTracker = (props) => {
                 id="outlined-multiline-static"
                 label="Notes (optional)"
                 multiline
-                rows={8}
+                rows={6}
                 placeholder="e.g. Went on a brisk walk after eating lunch today! It felt amazing!"
+                fullWidth
                 onChange={(e) => {
                   setFormFields({
                     ...formFields,
@@ -185,7 +185,7 @@ const FitnessTracker = (props) => {
             </Button>
           </form>
         </div>
-      </Box>
+      </Paper>
     </div>
   );
 };

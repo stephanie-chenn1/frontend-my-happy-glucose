@@ -93,11 +93,11 @@ const Fitness = (props) => {
           />
         </div>
         <div className="line-graph">
-          <ResponsiveContainer width="80%" aspect={3}>
+          <ResponsiveContainer width="75%" aspect={3}>
             {dateAndDurationData ? (
               <LineChart
                 data={dateAndDurationData}
-                margin={{ left: 220, top: 50 }}
+                margin={{ left: 260, top: 50 }}
               >
                 <CartesianGrid />
                 <XAxis dataKey="date" interval={"preserveStartEnd"} />

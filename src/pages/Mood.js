@@ -59,9 +59,9 @@ const Mood = () => {
           )}
         </div>
         <div className="line-graph">
-          <ResponsiveContainer width="80%" aspect={3}>
+          <ResponsiveContainer width="75%" aspect={3}>
             {moodData ? (
-              <LineChart data={moodData} margin={{ left: 220, top: 50 }}>
+              <LineChart data={moodData} margin={{ left: 260, top: 50 }}>
                 <CartesianGrid />
                 <XAxis dataKey="date" interval={"preserveStartEnd"} />
                 <YAxis></YAxis>
