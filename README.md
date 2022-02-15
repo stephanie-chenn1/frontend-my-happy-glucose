@@ -9,7 +9,7 @@ This application was created using:
 - React (front-end)
 
 ## Features
-- Meal tracker
+- Meal tracker (track carbohydrate count)
 - Glucose tracker
 - Fitness tracker
 - Mood tracker
@@ -18,8 +18,8 @@ This application was created using:
   - Glucose
   - Fitness
   - Mood
-- Dashboard to easily access reports for different features
-- Daily summary of the activites you tracked
+- Dashboard to easily access reports for different activities
+- Daily summary of which activites you tracked
 - Login page
 
 ## Dependencies
@@ -31,7 +31,12 @@ Front-end:
   - Text Fields
   - Paper style
   - Cards
+  - Alert
+  - Grid
+  - Avatar
+  - Box
 - Axios
+- Hooks: useState, useNavigate
 - Recharts
   - Line chart
 
