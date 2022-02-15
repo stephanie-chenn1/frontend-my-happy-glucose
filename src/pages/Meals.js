@@ -95,9 +95,9 @@ const Meals = (props) => {
           />
         </div>
         <div className="line-graph">
-          <ResponsiveContainer width="80%" aspect={3}>
+          <ResponsiveContainer width="75%" aspect={3}>
             {dateAndCarbData ? (
-              <LineChart data={dateAndCarbData} margin={{ left: 220, top: 50 }}>
+              <LineChart data={dateAndCarbData} margin={{ left: 260, top: 50 }}>
                 <CartesianGrid />
                 <XAxis dataKey="date" interval={"preserveStartEnd"} />
                 <YAxis></YAxis>

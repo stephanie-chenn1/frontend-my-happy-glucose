@@ -13,7 +13,6 @@ import axios from "axios";
 import Alert from "@mui/material/Alert";
 import NavList from "../components/NavList";
 import { Paper } from "@material-ui/core";
-import DinnerDiningIcon from "@mui/icons-material/DinnerDining";
 
 const units = [
   {
@@ -55,10 +54,10 @@ const MealTracker = (props) => {
   const [ErrorStatus, setErrorStatus] = useState(false);
 
   const paperStyle = {
-    padding: 20,
-    height: "65vh",
+    padding: 10,
+    height: "75vh",
     width: 500,
-    margin: "70px auto",
+    margin: "30px auto",
   };
 
   const addNewMeal = () => {
@@ -116,9 +115,7 @@ const MealTracker = (props) => {
               </div>
             ) : (
               <div>
-                <h3>
-                  Let's track your meals! <DinnerDiningIcon />
-                </h3>
+                <h3>Let's track your meals!</h3>
                 <div className="input-field">
                   {isQtyValid ? (
                     <TextField

@@ -1,26 +1,36 @@
 import React from "react";
-import "./TrackAMeal.css";
+import "./TrackGlucose.css";
 import Box from "@mui/material/Box";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import TextField from "@mui/material/TextField";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import Button from "@mui/material/Button";
 import NavList from "../components/NavList";
+import { Paper } from "@material-ui/core";
 
 const GlucoseTracker = (props) => {
+  let navigate = useNavigate();
   let numOfGlucoseSubmitted = props.numOfGlucoseSubmitted;
   let setNumOfGlucoseSubmitted = props.setNumOfGlucoseSubmitted;
 
-  let navigate = useNavigate();
+  let curr = new Date();
+  let dateToday = curr.toISOString().substr(0, 10);
+
+  const [isGlucoseValid, setGlucoseValid] = useState(true);
   const [formFields, setFormFields] = useState({
-    date: "2022-01-01",
-    time: "00:00",
+    date: "dateToday",
+    time: "",
     glucose: "",
     notes: "",
   });
 
-  const [isGlucoseValid, setGlucoseValid] = useState(true);
+  const paperStyle = {
+    padding: 10,
+    height: "75vh",
+    width: 500,
+    margin: "30px auto",
+  };
 
   const addNewGlucose = () => {
     axios
@@ -50,22 +60,7 @@ const GlucoseTracker = (props) => {
   return (
     <div>
       <NavList />
-      <Box
-        component="form"
-        sx={{
-          mt: 2,
-          display: "flex",
-          flexDirection: "column",
-          "& .MuiTextField-root": { m: 1, width: "21ch" },
-          border: "2px dashed grey",
-          height: 800,
-          width: 400,
-          alignItems: "center",
-          mx: "auto",
-        }}
-        noValidate
-        autoComplete="off"
-      >
+      <Paper elevation={10} style={paperStyle}>
         <div className="glucose-form">
           <form>
             <h3>Let's track your glucose levels!</h3>
@@ -74,8 +69,9 @@ const GlucoseTracker = (props) => {
                 id="date"
                 label="Date"
                 type="date"
-                defaultValue="2022-01-01"
+                defaultValue={dateToday}
                 helperText="Please enter the date you monitored your glucose"
+                fullWidth
                 onChange={(e) => {
                   setFormFields({
                     ...formFields,
@@ -89,11 +85,11 @@ const GlucoseTracker = (props) => {
                 id="time"
                 label="Time"
                 type="time"
-                defaultValue="12:00"
                 InputLabelProps={{
                   shrink: true,
                 }}
                 helperText="Please enter the time you monitored your glucose"
+                fullWidth
                 onChange={(e) => {
                   setFormFields({
                     ...formFields,
@@ -111,6 +107,7 @@ const GlucoseTracker = (props) => {
                   type="number"
                   placeholder="mg/dL"
                   helperText="Please enter your glucose level"
+                  fullWidth
                   onChange={(e) => {
                     if (e.target.value <= 0) {
                       setGlucoseValid(false);
@@ -150,8 +147,9 @@ const GlucoseTracker = (props) => {
                   id="outlined-multiline-static"
                   label="Notes (optional)"
                   multiline
-                  rows={10}
+                  rows={6}
                   placeholder="e.g. Woke up in the middle of the night with a low. Felt dizzy for a bit but felt better after taking a glucose tablet."
+                  fullWidth
                   onChange={(e) => {
                     setFormFields({
                       ...formFields,
@@ -170,7 +168,7 @@ const GlucoseTracker = (props) => {
             </div>
           </form>
         </div>
-      </Box>
+      </Paper>
     </div>
   );
 };
