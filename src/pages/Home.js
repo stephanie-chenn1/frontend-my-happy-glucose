@@ -1,17 +1,11 @@
 import React from "react";
 import "./Home.css";
 import HomeHeader from "../components/HomeHeader";
-import { useNavigate } from "react-router-dom";
 import DailySummary from "../components/DailySummary";
-import Paper from "@mui/material/Paper";
-import Stack from "@mui/material/Stack";
-import { styled } from "@mui/material/styles";
-import { useState, useEffect } from "react";
 import NavList from "../components/NavList";
 import DashboardBox from "../components/DashboardBox";
 
 const Home = (props) => {
-  const navigate = useNavigate();
   let numOfMealsSubmitted = props.numOfMealsSubmitted;
   let numOfGlucoseSubmitted = props.numOfGlucoseSubmitted;
   let numOfFitnessSubmitted = props.numOfFitnessSubmitted;
@@ -25,7 +19,7 @@ const Home = (props) => {
     },
     {
       Title: "Glucose",
-      Info: "Tracking your glucose levels can help reduce symptoms of high and low blood sugar.",
+      Info: "Monitoring your glucose levels can help reduce symptoms of high and low blood sugar.",
       Link: "/track-glucose",
     },
     {
@@ -42,18 +36,15 @@ const Home = (props) => {
   return (
     <>
       <NavList />
-      {/* <Stack spacing={2} alignItems="center"> */}
       <div className="header">
         <HomeHeader />
       </div>
       <div className="container">
-        {/* <div className="container"> */}
         {boxes.map((box) => (
           <div className="box">
             <DashboardBox box={box} />
           </div>
         ))}
-        {/* </div> */}
 
         {numOfMealsSubmitted ||
         numOfGlucoseSubmitted ||
@@ -68,7 +59,6 @@ const Home = (props) => {
             />
           </div>
         ) : null}
-        {/* </Stack> */}
       </div>
     </>
   );

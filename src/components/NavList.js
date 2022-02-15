@@ -1,14 +1,15 @@
+import "./NavList.css";
 import React, { useState } from "react";
 import { NavListData } from "./NavListData";
 import * as FaIcons from "react-icons/fa";
 import * as AiIcons from "react-icons/ai";
 import { Link } from "react-router-dom";
-import "./NavList.css";
 import { IconContext } from "react-icons";
-import Button from "@mui/material/Button";
+import { useNavigate } from "react-router-dom";
 
-const NavList = () => {
+const NavList = (props) => {
   const [sidebar, setSidebar] = useState(false);
+  const navigate = useNavigate();
 
   const showSidebar = () => setSidebar(!sidebar);
   return (
@@ -21,6 +22,14 @@ const NavList = () => {
             </Link>
           </div>
           <h3>myhappyglucose</h3>
+          <button
+            className="button"
+            onClick={() => {
+              navigate("/login");
+            }}
+          >
+            Log Out
+          </button>
         </div>
         <nav className={sidebar ? "nav-menu active" : "nav-menu"}>
           <ul className="nav-menu-items" onClick={showSidebar}>

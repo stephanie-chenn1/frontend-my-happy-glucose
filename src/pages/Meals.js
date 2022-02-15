@@ -86,14 +86,16 @@ const Meals = (props) => {
       <NavList />
       <div className="meals">
         <h1>All Meals Tracked</h1>
-        <div style={{ height: 400, width: "60%", margin: "auto" }}>
-          <DataGrid
-            rows={mealsData}
-            columns={columns}
-            pageSize={5}
-            rowsPerPageOptions={[5]}
-          />
-        </div>
+        {mealsData ? (
+          <div style={{ height: 400, width: "60%", margin: "auto" }}>
+            <DataGrid
+              rows={mealsData}
+              columns={columns}
+              pageSize={5}
+              rowsPerPageOptions={[5]}
+            />
+          </div>
+        ) : null}
         <div className="line-graph">
           <ResponsiveContainer width="75%" aspect={3}>
             {dateAndCarbData ? (

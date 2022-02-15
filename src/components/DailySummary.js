@@ -1,6 +1,7 @@
 import React from "react";
 import "./DailySummary.css";
-import { useState, useEffect } from "react";
+import { Paper } from "@material-ui/core";
+import Typography from "@mui/material/Typography";
 
 const DailySummary = (props) => {
   let numOfMealsSubmitted = props.numOfMealsSubmitted;
@@ -8,34 +9,43 @@ const DailySummary = (props) => {
   let numOfFitnessSubmitted = props.numOfFitnessSubmitted;
   let numOfMoodSubmitted = props.numOfMoodSubmitted;
 
+  const paperStyle = {
+    padding: 20,
+    height: "30vh",
+    width: 800,
+    margin: "35px auto",
+  };
+
   return (
     <div>
-      <div>
-        <h2>Daily Summary</h2>
+      <Paper elevation={5} style={paperStyle}>
+        <Typography className="title" variant="h4">
+          Daily Summary
+        </Typography>
         {numOfMealsSubmitted > 0 ? (
-          <h3>
+          <Typography variant="h6">
             ‣You've successfully submitted {numOfMealsSubmitted} meal(s) today!
-          </h3>
+          </Typography>
         ) : null}
         {numOfGlucoseSubmitted > 0 ? (
-          <h3>
+          <Typography variant="h6">
             ‣You've successfully submitted {numOfGlucoseSubmitted} glucose
             reading(s) today!
-          </h3>
+          </Typography>
         ) : null}
         {numOfFitnessSubmitted > 0 ? (
-          <h3>
+          <Typography variant="h6">
             ‣You've successfully submitted {numOfFitnessSubmitted} workout(s)
             today!
-          </h3>
+          </Typography>
         ) : null}
         {numOfMoodSubmitted > 0 ? (
-          <h3>
+          <Typography variant="h6">
             ‣You've successfully submitted {numOfMoodSubmitted} mood tracking(s)
             today!
-          </h3>
+          </Typography>
         ) : null}
-      </div>
+      </Paper>
     </div>
   );
 };

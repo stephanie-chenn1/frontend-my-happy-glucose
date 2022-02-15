@@ -1,10 +1,11 @@
 import React from "react";
+import Typography from "@mui/material/Typography";
 
 const HomeHeader = () => {
   return (
     <div className="summary">
-      <h1>Welcome, Stephanie!</h1>
-      <h3>Click below to log your activity.</h3>
+      <Typography variant="h3">Welcome, Michelle!</Typography>
+      <Typography variant="h4">Click below to log your activities.</Typography>
     </div>
   );
 };

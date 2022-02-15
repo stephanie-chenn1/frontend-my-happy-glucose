@@ -19,7 +19,7 @@ const GlucoseTracker = (props) => {
 
   const [isGlucoseValid, setGlucoseValid] = useState(true);
   const [formFields, setFormFields] = useState({
-    date: "dateToday",
+    date: dateToday,
     time: "",
     glucose: "",
     notes: "",
@@ -45,11 +45,10 @@ const GlucoseTracker = (props) => {
         console.log(response.data);
 
         setFormFields({
-          qty: "",
-          unit: "",
-          food: "",
-          time: "00:00",
-          date: "2022-01-01",
+          date: dateToday,
+          time: "",
+          glucose: "",
+          notes: "",
         });
         setNumOfGlucoseSubmitted(numOfGlucoseSubmitted + 1);
         navigate("/dashboard");

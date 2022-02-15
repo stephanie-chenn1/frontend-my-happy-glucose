@@ -1,16 +1,10 @@
 import React from "react";
 import "./TrackMood.css";
-import { Dropdown } from "react-bootstrap";
-import TimePicker from "react-time-picker";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
-import Input from "@mui/material/Input";
-import MenuItem from "@mui/material/MenuItem";
-import Box from "@mui/material/Box";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
-import Alert from "@mui/material/Alert";
 import NavList from "../components/NavList";
 import { Paper } from "@material-ui/core";
 import { Rating } from "@mui/material";
@@ -85,9 +79,7 @@ const MoodTracker = (props) => {
         console.log(numOfMoodSubmitted);
         setNumOfMoodSubmitted(numOfMoodSubmitted + 1);
         setFormFields({
-          qty: "",
-          unit: "",
-          food: "",
+          mood: "",
           time: "",
           date: dateToday,
         });
@@ -96,9 +88,7 @@ const MoodTracker = (props) => {
       .catch((err) => {
         console.log(err);
         setFormFields({
-          qty: "",
-          unit: "",
-          food: "",
+          mood: "",
           time: "",
           date: dateToday,
         });

@@ -88,7 +88,7 @@ const FitnessTracker = (props) => {
         console.log(response.data);
 
         setFormFields({
-          date: "2022-01-01",
+          date: dateToday,
           duration: "",
           workout_type: "",
           notes: "",
@@ -127,7 +127,7 @@ const FitnessTracker = (props) => {
                 id="duration"
                 label="Duration"
                 type="number"
-                helperText="Please enter the length of your exercise"
+                helperText="Please enter the length of your exercise in minutes"
                 fullWidth
                 onChange={(e) => {
                   setFormFields({
